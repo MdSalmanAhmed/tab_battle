@@ -13,13 +13,25 @@ class MyApp extends StatelessWidget {
           body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: Colors.red,
+            flex: 5,
+            child: InkWell(
+              onTap: () {
+                print("Tap on red");
+              },
+              child: Container(
+                color: Colors.redAccent,
+              ),
             ),
           ),
           Expanded(
-            child: Container(
-              color: Colors.red,
+            flex: 5,
+            child: InkWell(
+              onTap: () {
+                print('Tap on blue');
+              },
+              child: Container(
+                color: Colors.blueAccent,
+              ),
             ),
           ),
         ],
