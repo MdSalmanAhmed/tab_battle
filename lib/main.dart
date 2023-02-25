@@ -12,6 +12,21 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int redScore = 50;
   int blueScore = 50;
+
+  void redScoreUpadate() {
+    setState(() {
+      redScore = redScore + 1;
+      blueScore = blueScore - 1;
+    });
+  }
+
+  void blueScoreUpdate() {
+    setState(() {
+      blueScore = blueScore + 1;
+      redScore = redScore - 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,12 +37,7 @@ class _MyAppState extends State<MyApp> {
           Expanded(
             flex: redScore,
             child: InkWell(
-              onTap: () {
-                setState(() {
-                  redScore = redScore + 1;
-                  blueScore = blueScore - 1;
-                });
-              },
+              onTap: redScoreUpadate,
               child: Container(
                 color: Colors.redAccent,
               ),
@@ -36,12 +46,7 @@ class _MyAppState extends State<MyApp> {
           Expanded(
             flex: blueScore,
             child: InkWell(
-              onTap: () {
-                setState(() {
-                  blueScore = blueScore + 1;
-                  redScore = redScore - 1;
-                });
-              },
+              onTap: blueScoreUpdate,
               child: Container(
                 color: Colors.blueAccent,
               ),
