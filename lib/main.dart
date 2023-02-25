@@ -31,27 +31,47 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tab Battle',
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: Column(
+          body: Stack(
         children: [
-          Expanded(
-            flex: redScore,
-            child: InkWell(
-              onTap: redScoreUpadate,
-              child: Container(
-                color: Colors.redAccent,
+          Column(
+            children: [
+              Expanded(
+                flex: redScore,
+                child: InkWell(
+                  onTap: redScoreUpadate,
+                  child: Container(
+                    color: Colors.redAccent,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: blueScore,
-            child: InkWell(
-              onTap: blueScoreUpdate,
-              child: Container(
-                color: Colors.blueAccent,
+              Expanded(
+                flex: blueScore,
+                child: InkWell(
+                  onTap: blueScoreUpdate,
+                  child: Container(
+                    color: Colors.blueAccent,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
+          redScore >= 100 || blueScore >= 100
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: redScore >= 100
+                      ? Colors.redAccent.withOpacity(0.5)
+                      : Colors.blueAccent.withOpacity(0.5),
+                  child: Center(
+                    child: Text(
+                      '${redScore >= 100 ? "Red" : "Blue"} won!!',
+                      style: TextStyle(fontSize: 40.0, color: Colors.white),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       )),
     );
